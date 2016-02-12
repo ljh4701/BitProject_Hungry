@@ -38,7 +38,7 @@ public class SubjectDAO {
 		return tabSubjectList;
 	}
 	
-	public List<SubjectVO> getTabSubjectList(String ProjectNo){
+	public List<SubjectVO> getTabSubjectList(String TitleNo){
 		List<SubjectVO> tabSubjectList = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -47,8 +47,8 @@ public class SubjectDAO {
 		
 		try{
 			conn = DBUtil.getConnection();
-			ps = conn.prepareStatement("select * from subject where PROJECTNO=?");
-			ps.setString(1, ProjectNo);
+			ps = conn.prepareStatement("select * from subject where TITLENO = ?");
+			ps.setString(1, TitleNo);
 			rs = ps.executeQuery();
 			
 			while (rs.next()){
