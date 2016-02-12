@@ -27,15 +27,6 @@
 <link href="css/assets/ie10-viewport-bug-workaround.css"
 	rel="stylesheet">
 
-<!-- 부트스트랩 navbar 커스텀 CSS 연결 -->
-<link rel="stylesheet" href="css/bootstrap-index-navbar.css">
-
-<!--  부트스트랩 Panel CSS 연결 -->
-<link rel="stylesheet" href="css/bootstrap-index-panel.css">
-
-<!-- 부트스트랩 Carousel 커스텀 CSS 연결 -->
-<link rel="stylesheet" href="css/bootstrap-index-carousel.css">
-
 <!-- 부트스트랩을 불러오기 전 jQuery 컴파일버전 최신버전 연결 -->
 <!-- 최신버전 다운로드 링크 : http://jquery.com/download/ -->
 <script src="js/jquery-1.12.0.min.js"></script>
@@ -54,9 +45,6 @@ Latest compiled JavaScript
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
  -->
 
-<!-- Carousel 미리 로드 스크립트 -> 미리 로드되지 않을시 발생하는 렉 방지함 -->
-<script src="js/bootstrap-index-carousel.js"></script>
-
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="js/assets/ie-emulation-modes-warning.js"></script>
@@ -67,60 +55,59 @@ Latest compiled JavaScript
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<style>
+	body {
+		background-color: #1f8ecd;
+	}
+	
+	
+	.progress {
+    	position: relative;
+	}
+
+	.progress span {
+	    position: absolute;
+	    display: block;
+	    width: 100%;
+	    color: black;
+	 }
+	
+</style>
+
+<script>
+	(function($){
+	    $.fn.extend({
+	        center: function () {
+	            return this.each(function() {
+	                var top = ($(window).height() - $(this).outerHeight()) / 2;
+	                var left = ($(window).width() - $(this).outerWidth()) / 2;
+	                $(this).css({position:'absolute', margin:0, top: (top > 0 ? top : 0)+'px', left: (left > 0 ? left : 0)+'px'});
+	            });
+	        }
+	    }); 
+	})(jQuery);
+
+	$(document).ready(function() {
+		$('#searchDiv').center();
+	});
+	
+</script>
+
 </head>
 <body>
 
-	<!-- 상단 네비게이션바 구현 ( 네비게이션 디폴트 속성 -> bootstrap-index-navbar.css 로 커스터마이징함 ) -->
-	<nav id="index_navbar" class="navbar navbar-default">
-		<div class="container-fluid">
-			<!-- 반응형 박스 생성 -->
-			<div class="navbar-header">
-				<!-- 로고 박스 생성 -->
-				<a class="navbar-brand" href="#">헝그리</a>
-				<!-- 로고 -->
-			</div>
-			<ul class="nav navbar-nav">
-				<!-- 메뉴박스 생성 -->
-				<li class="active"><a href="#">홈</a></li>
-				<!-- 홈 -->
-				<li><a href="#">플랫폼 소개</a></li>
-				<!-- 플랫폼 소개 -->
-			</ul>
-		</div>
-	</nav>
+<div id="searchDiv" class="container">
+  <div class="form-group has-success has-feedback">
+      <input class="form-control" placeholder="프로젝트 아이디를 입력해보세요." id="focusedInput" type="text">
+      <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+    </div>
+</div>
 
-	<div id="mycarousel" class="carousel slide" data-ride="carousel">
-		<!-- /container -->
-
-		<!-- Wrapper for slides -->
-		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-				<img src="https://unsplash.it/2000/1250?image=397"
-					data-color="lightblue" alt="First Image">
-				<div class="carousel-caption"></div>
-			</div>
-			<div class="item">
-				<img src="https://unsplash.it/2000/1250?image=689"
-					data-color="firebrick" alt="Second Image">
-				<div class="carousel-caption"></div>
-			</div>
-			<div class="item">
-				<img src="https://unsplash.it/2000/1250?image=675"
-					data-color="violet" alt="Third Image">
-				<div class="carousel-caption"></div>
-			</div>
-			<div class="item">
-				<img src="https://unsplash.it/2000/1250?image=658"
-					data-color="lightgreen" alt="Fourth Image">
-				<div class="carousel-caption"></div>
-			</div>
-			<div class="item">
-				<img src="https://unsplash.it/2000/1250?image=638"
-					data-color="tomato" alt="Fifth Image">
-				<div class="carousel-caption"></div>
-			</div>
-		</div>
-	</div>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+        <span>60% Complete</span>
+    </div>
+</div>
 
 </body>
 </html>
