@@ -1,0 +1,140 @@
+body{
+	background-color :#1C1C1C;
+	
+}
+
+.navbar-brand {
+	padding-top:5px;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.carousel {
+    position: fixed;
+}
+
+
+span{
+	font-size : 5px;
+	text-align: center;
+}
+.progress {
+    height: 75px;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+	background-color: #f5f5f5;
+    border-radius: 40px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+.progress_todo {
+    height: 10px;
+    margin-bottom: 20px;
+	background-color: #f5f5f5;
+    border-radius: 40px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	margin-left : 15px;
+	margin-right : 15px;
+}
+
+.progress_sub {
+    height: 5px;
+    margin-bottom: 20px;
+	background-color: #f5f5f5;
+    border-radius: 40px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	margin-left : 15px;
+	margin-right : 15px;
+}
+
+div .subject{
+	border : black 1px solid;
+	margin-left : 15px;
+	margin-right : 15px;
+	border-radius : 10px;
+    padding-left: 17px;
+    padding-right: 17px;
+}
+
+.progress-bar {
+    width: 40%;
+    background-color: red;
+	border-radius:40px;
+}
+.header{
+	position:fixed;
+    background-color: black;
+    width: 100%;
+}
+
+section{
+	position:absolute;
+	width:100%;
+    top: 200px;
+    z-index: -1;
+}
+
+.add{
+	text-align:center;
+}
+
+.add > img {
+	margin:42%;
+}
+
+div[class^='todo'],.add {
+    background-color: white;
+    width: 300px;
+    height: 320px;
+    float:left;
+	margin:30px;
+	border-radius: 8px;
+}
+div[class^='todo'] {
+	overflow-y: auto;
+}
+
+.addsub {
+	margin-left:45%;
+	margin-top:10%;
+}
+
+h2 {
+    margin-left: 150px;
+    color: white;
+}
+
+.container {
+	margin-top:7%;
+	margin-left:37%;
+    position: absolute;
+	width:100%;
+}
+
+#todotilename{
+	margin-left: 15px;
+}
+
+#todotitle,#subtitle,#deditible {
+	width:100%;
+	height:20px;
+	margin:0 auto;
+}
+
+input {
+    border-radius: 6px;
+    padding: 5px;
+    border: 0;
+	width:300px;
+	margin-right:50px;
+}
+
+input[type=submit] { 
+	width:50px;
+}
