@@ -57,7 +57,50 @@ Latest compiled JavaScript
 
 <style>
 	body {
-		background-color: #1f8ecd;
+		background-color: #ffffcc !important;
+	}
+	
+	#searchDiv {
+		width: 30%;
+	}
+		
+	#searchDiv .form-control {
+		text-align: center;
+		font-size: 1.25em !important;
+	}
+	
+	.jumbotron { 
+    	background-color: #f4511e; /* Orange */
+		color: #ffffff !important;
+	}
+	
+	#btnCreate {
+		margin-top: 25px;
+	}
+	
+	.navbar {
+	    margin-bottom: 0;
+	    background-color: #f4511e;
+	    z-index: 9999;
+	    border: 0;
+	    font-size: 12px !important;
+	    line-height: 1.42857143 !important;
+	    letter-spacing: 4px;
+	    border-radius: 0;
+	}
+
+	.navbar li a, .navbar .navbar-brand {
+	    color: #fff !important;
+	}
+	
+	.navbar-nav li a:hover, .navbar-nav li.active a {
+	    color: #f4511e !important;
+	    background-color: #fff !important;
+	}
+	
+	.navbar-default .navbar-toggle {
+	    border-color: transparent;
+	    color: #fff !important;
 	}
 </style>
 
@@ -66,7 +109,7 @@ Latest compiled JavaScript
 	    $.fn.extend({
 	        center: function () {
 	            return this.each(function() {
-	                var top = ($(window).height() - $(this).outerHeight()) / 2;
+	                var top = ($(window).height() - $(this).outerHeight()) / 2 - 300;
 	                var left = ($(window).width() - $(this).outerWidth()) / 2;
 	                $(this).css({position:'absolute', margin:0, top: (top > 0 ? top : 0)+'px', left: (left > 0 ? left : 0)+'px'});
 	            });
@@ -76,6 +119,10 @@ Latest compiled JavaScript
 
 	$(document).ready(function() {
 		$('#searchDiv').center();
+		
+		$(window).resize(function() {
+			$('#searchDiv').center();
+		})
 	});
 	
 </script>
@@ -83,18 +130,47 @@ Latest compiled JavaScript
 </head>
 <body>
 
-<div id="searchDiv" class="container">
-  <div class="form-group has-success has-feedback">
-      <input class="form-control" placeholder="프로젝트 아이디를 입력해보세요." id="focusedInput" type="text">
-      <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">HUNGRY</a>
     </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+      	<li><a href="#about" style="margin-right: 50px;">ABOUT</a>
+        <li><a href="#login">LOGIN</a></li>
+        <li><a href="#join">JOIN</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h1>Hungry</h1><br>
+  <form class="form-inline">
+    <input type="email" class="form-control" size="75" placeholder="Project Number">
+    <button id="btnJoin" type="button" class="btn btn-danger">참여하기</button><br>
+	<button id="btnCreate" type="button" class="btn btn-default btn-lg">프로젝트 생성하기</button>
+  </form>
 </div>
 
-<div class="progress">
-    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-        <span>60% Complete</span>
-    </div>
+
+
+<!--
+<div id="searchDiv" class="container text-center">
+	<h1>Hungry</h1>
+	<div class="form-group has-error has-feedback">
+	    <input class="form-control" placeholder="프로젝트 아이디를 입력해보세요." id="focusedInput" type="text">
+	    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+	  </div>
 </div>
+-->
+
 
 </body>
 </html>

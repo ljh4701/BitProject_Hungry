@@ -60,8 +60,27 @@ Latest compiled JavaScript
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+<style>
+	body {
+		background-color: #1f8ecd;
+	}
+	
+	
+	.progress {
+    	position: relative;
+	}
+
+	.progress span {
+	    position: absolute;
+	    display: block;
+	    width: 100%;
+	    color: black;
+	 }
+</style>
+
 <script>
 	$(document).ready(function() {
+		/*
 		$.ajax ({
 			url: './api/getTODOTileList.jsp',
 			type: 'post',
@@ -71,11 +90,16 @@ Latest compiled JavaScript
 				$('#timezones').html(JSON.stringify(data));
 			}
 		});
+		*/
 	});
 </script>
 
 </head>
 <body>
-	<p id="timezones"></p>
+	<div class="progress">
+	    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+	        <span>60% Complete</span>
+	    </div>
+	</div>
 </body>
 </html>
