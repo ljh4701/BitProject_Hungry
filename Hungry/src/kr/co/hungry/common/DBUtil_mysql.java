@@ -1,4 +1,4 @@
-package kr.co.hungry.common;
+	package kr.co.hungry.common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,17 +6,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DBUtil {
+public class DBUtil_mysql {
 	public static Connection getConnection() throws Exception{ //DB 접속 메서드
-		String url="jdbc:oracle:thin:@127.0.0.1:1521:XE";
-		String user="project";
-		String password="project";
+		String url="jdbc:mysql://192.168.1.29/hungry";
+		//jdbc:dbms명://접속할host주소 '192.168.1.29' (선재자리) /접속할db명 'hungry'입력
+		//현재 사설 아이피(192.168.x.x)이므로 글로벌 접속시 DMZ이용 혹은 호스팅 DB를 사용하여 해결
+		String user="hungry";
+		//외부접속이므로 db내에서 생성하고 접속을 허용한  'hungry'계정명으로 접속
+		String password="hungry";
+		//외부접속이 허용된 hungry계정명에 설정된 password 'hungry'입력
 		Connection conn = getConnection(url, user, password);
 		return conn;
 	}
 	
 	public static Connection getConnection(String url, String user, String password) throws Exception{
-		Class.forName("oracle.jdbc.driver.OracleDriver");	//드라이버 로딩
+		Class.forName("com.mysql.jdbc.Driver");	//(jdbc)mysql 드라이버 로딩
 		Connection conn = DriverManager.getConnection(url, user, password);	//DB 접속 (Connection 객체를 얻어옴)
 		return conn;
 	}

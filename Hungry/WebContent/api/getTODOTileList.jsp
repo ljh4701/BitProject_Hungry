@@ -48,7 +48,7 @@
 	json.put("PROJECTNO", ProjectNo);
 	
 	TODOTile = new JSONObject();
-	List<TODOTileVO> tile = tiledao.getTabTitleList(ProjectNo);
+	List<TODOTileVO> tile = tiledao.getTabTileList(ProjectNo);
 	
 	if (tile.size() == 0) {
 		TODOTile.put("RESULT", "SUCCESS_EMPTY");

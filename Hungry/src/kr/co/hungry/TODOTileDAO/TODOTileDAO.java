@@ -39,7 +39,7 @@ public class TODOTileDAO {
 		return tabTitleList;
 	}
 	
-	public List<TODOTileVO> getTabTitleList(String projectNo) {
+	public List<TODOTileVO> getTabTileList(String projectNo) {
 		List<TODOTileVO> tabTitleList = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement ps = null;
