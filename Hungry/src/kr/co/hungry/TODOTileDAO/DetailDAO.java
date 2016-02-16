@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.co.hungry.common.DBUtil;
+import kr.co.hungry.common.DBUtil_mysql;
 import kr.co.hungry.TODOTileVO.DetailVO;
 
 public class DetailDAO {
@@ -18,7 +18,7 @@ public class DetailDAO {
 		DetailVO tabDetail;
 		
 		try{
-			conn = DBUtil.getConnection();
+			conn = DBUtil_mysql.getConnection();
 			ps = conn.prepareStatement("select * from detail");
 			rs = ps.executeQuery();
 			
@@ -33,7 +33,7 @@ public class DetailDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
-			DBUtil.close(conn, ps, rs);
+			DBUtil_mysql.close(conn, ps, rs);
 		}
 		
 		return tabDetailList;
@@ -47,7 +47,7 @@ public class DetailDAO {
 		DetailVO tabDetail;
 		
 		try{
-			conn = DBUtil.getConnection();
+			conn = DBUtil_mysql.getConnection();
 			ps = conn.prepareStatement("select * from detail where SubjectNo=?");
 			ps.setString(1, SubjectNo);
 			rs = ps.executeQuery();
@@ -63,7 +63,7 @@ public class DetailDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
-			DBUtil.close(conn, ps, rs);
+			DBUtil_mysql.close(conn, ps, rs);
 		}
 		
 		return tabDetailList;
@@ -75,7 +75,7 @@ public class DetailDAO {
 		PreparedStatement ps = null;
 		
 		try{
-			conn = DBUtil.getConnection();
+			conn = DBUtil_mysql.getConnection();
 			String sql = "delete detail where detailNo = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, detailNo);
@@ -84,7 +84,7 @@ public class DetailDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
-			DBUtil.close(conn, ps);
+			DBUtil_mysql.close(conn, ps);
 		}
 		
 		return resultCount;
@@ -97,7 +97,7 @@ public class DetailDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = DBUtil.getConnection();
+			conn = DBUtil_mysql.getConnection();
 			String sql = "select * from detail where detailNo = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, detailNo);
@@ -112,7 +112,7 @@ public class DetailDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally {
-			DBUtil.close(conn, ps, rs);
+			DBUtil_mysql.close(conn, ps, rs);
 		}
 		
 		return getDetail;
@@ -124,8 +124,8 @@ public class DetailDAO {
 		int resultCount = 0;
 		
 		try{
-			conn = DBUtil.getConnection();
-			String sql = "insert into detail values(detail_sq.nextval,?,?, 0)";
+			conn = DBUtil_mysql.getConnection();
+			String sql = "insert into detail values(null,?,?, 0)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, tabDetail.getDetailContent());
 			ps.setString(2, tabDetail.getSubjectNo());
@@ -134,7 +134,7 @@ public class DetailDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
-			DBUtil.close(conn, ps);
+			DBUtil_mysql.close(conn, ps);
 		}
 		return resultCount;
 	}

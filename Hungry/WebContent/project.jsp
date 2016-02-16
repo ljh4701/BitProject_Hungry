@@ -25,9 +25,6 @@
 
 </head>
 <body>
-
-
-	
 </body>
 
 </html>
