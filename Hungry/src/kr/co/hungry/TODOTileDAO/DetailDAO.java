@@ -90,6 +90,27 @@ public class DetailDAO {
 		return resultCount;
 	}
 	
+	public int updateTabDetail(String detailNo, String detailContent){
+		int resultCount = 0;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try{
+			conn = DBUtil_mysql.getConnection();
+			String sql = "update detail set detailContent=? where detail No=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, detailContent);
+			ps.setString(2, detailNo);
+			resultCount = ps.executeUpdate();
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally{
+			DBUtil_mysql.close(conn, ps);
+		}
+		
+		return resultCount;
+	}
+	
 	public DetailVO getTabDetail(String detailNo){
 		DetailVO getDetail=null;
 		Connection conn = null;

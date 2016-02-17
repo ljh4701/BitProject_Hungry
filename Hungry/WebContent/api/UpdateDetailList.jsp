@@ -9,4 +9,5 @@
 	
 	request.setCharacterEncoding("utf-8");
 	vo.setDetailContent(request.getParameter("detail"));
+	
 %>

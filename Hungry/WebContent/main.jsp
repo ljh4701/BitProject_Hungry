@@ -47,6 +47,50 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    
+        
+   <!-- 데이터 베이스 detail테이블의 각 항목을 리스트 객체로 받아서 화면에 출력  -->
+    <%
+    	DetailDAO dDao = new DetailDAO();
+    	DetailVO dVO = new DetailVO();
+    	
+    	List<DetailVO> detailList = dDao.getTabDetailList();
+    %>
+    
+    <div class='todo'>
+    	<div class='delete'>
+    		<img src='img/close.png'>
+    	</div>
+    	<h4 id='todotilename'>Todo tile name</h4>
+		<div class='progress_sub'>
+			<div class='progress-bar progress-bar-striped active' role='progressbar'
+				aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:40%'>
+			</div>
+		</div>
+		<div class='subject'>
+			<h5 id='sub_title'>subject name</h5>
+    		<div class='progress_sub'>
+    			<div class='progress-bar progress-bar-striped active' role='progressbar'
+    				 aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:40%'>
+    			</div>
+    		</div>
+	    	<div class='detail'>
+	    		<% for(int i=0;i< detailList.size();i++ ){ 
+	    			DetailVO detail = detailList.get(i);
+	    		%>
+	    		<div id='detail'><%=detail.getDetailContent() %>
+	    			<input type="text" name='detailNo' value='<%=detail.getDetailNo() %>'>
+	    		</div><%
+		    		} %>
+				<div class='innerPlus'>
+					<img src='img/plus.png' width='10px'/>
+				</div>
+			</div>
+		</div>
+		<div class='addsub'>
+			<img src='img/plus.png' width='30px'/>
+		</div>
+	</div>
 
     <!-- Menu Toggle Script -->
     <script>
@@ -54,7 +98,7 @@
 	new_detail="<div id='detail'>detail</div>";
 	new_progressbar="<div class='progress_sub'><div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:40%'></div></div>";
 	new_subject="<div class='subject'><h5 id='sub_title'>subject name</h5>"+new_progressbar+"<div class='detail'>"+new_detail+"<div class='innerPlus'><img src='img/plus.png' width='10px'/></div></div></div><div class='addsub'><img src='img/plus.png' width='30px'/></div>";
-	
+	var detailCount = 0;
 	
 	//외부 + 버튼 클릭시 todotile{subject > detail} 생성
 	$(".add").click(function() {
@@ -188,29 +232,6 @@
 	    });
 	 */
     </script>
-    
-   <!-- 데이터 베이스 detail테이블의 각 항목을 리스트 객체로 받아서 화면에 출력  -->
-    <%
-    	DetailDAO dDao = new DetailDAO();
-    	
-    	List<DetailVO> detailList = dDao.getTabDetailList();
-    %>
-    
-    <div class='todo'><div class='delete'><img src='img/close.png'></div><h4 name='todotilename'>Todo tile name</h4>
-		<div class='progress_sub'><div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:40%'></div></div>
-		    <div class='subject'><h5 name='sub_title'>subject name</h5>
-    	<div class='progress_sub'><div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:40%'></div></div>
-    <div class='detail'>
-    	<% for(int i=0;i< detailList.size();i++ ){ 
-    		DetailVO detail = detailList.get(i);
-    	%>
-    	<div name='detail'><%=detail.getDetailContent() %></div><%
-    	}    	
-%>
-
-
-    <div class='innerPlus'><img src='img/plus.png' width='10px'/></div></div></div><div class='addsub'><img src='img/plus.png' width='30px'/></div>
-</div>
 
 </body>
 
