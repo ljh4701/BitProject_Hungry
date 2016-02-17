@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
     pageEncoding="UTF-8"%>
+=======
+	pageEncoding="UTF-8"%>
+>>>>>>> refs/remotes/origin/master
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +42,11 @@ jQuery library
 Latest compiled JavaScript
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
  -->
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> refs/remotes/origin/master
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="js/assets/ie-emulation-modes-warning.js"></script>
@@ -53,6 +61,7 @@ Latest compiled JavaScript
 <script src="js/masonry.pkdg.min.js"></script>
 
 <style>
+<<<<<<< HEAD
 * { box-sizing: border-box; }
 
 body { font-family: sans-serif; }
@@ -81,6 +90,36 @@ body { font-family: sans-serif; }
   background-color: #2195c9;
   border-radius: 10px;
   padding:20px;
+=======
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+/* ---- grid ---- */
+#grid {
+	background: #EEE;
+	max-width: 98%;
+	margin: 0 auto;
+	display: -webkit-flex; /* Safari */
+    -webkit-justify-content: space-around; /* Safari 6.1+ */
+    display: flex;
+    justify-content: space-around;
+}
+
+/* ---- grid-item ---- */
+.grid-item {
+	width: 300px;
+	height: 320px;
+	float: left;
+	margin: 5px;
+	background-color: #02B34F;
+	border-radius: 10px;
+	padding: 10px;
+>>>>>>> refs/remotes/origin/master
 }
 
 .navbar {
@@ -91,6 +130,7 @@ body { font-family: sans-serif; }
 	padding: 10px;
 }
 
+<<<<<<< HEAD
 .progress {
 	min-height: 50px;
 	margin-bottom: 0;
@@ -118,6 +158,82 @@ body { font-family: sans-serif; }
 			});
 	});
 
+=======
+.navbar .progress {
+	min-height: 50px;
+	margin-bottom: 0;
+	position: relative;
+	border-radius: 20px 20px 20px 20px;
+}
+
+.navbar .progress-bar {
+	background-color: #08B452;
+}
+
+.navbar .progress span {
+	position: absolute;
+	display: block;
+	width: 100%;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 50px;
+	color: red;
+}
+
+.grid-item .progress {
+	height: 15px;
+	margin-bottom: 3px;
+	position: relative;
+	border-radius: 0 0 3px 3px;
+}
+
+.grid-item .progress-bar {
+	background-color: #1CFF7F;
+}
+
+.grid-item .progress span {
+	position: absolute;
+	display: block;
+	width: 100%;
+	line-height: 15px;
+	color: black;
+	font-weight: bold;
+}
+
+.grid-item .todotile {
+	width: 100%;
+	background-color: #18D6AA;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.grid-item .todotileTitle {
+	background-color: #B31002;
+	border-radius: 5px 5px 0 0;
+	font-size: 24px;
+	padding: 3px;
+	color: white;
+	text-align: center;
+}
+
+.grid-item .subjects {
+
+}
+
+.grid-item .details {
+
+}
+
+</style>
+
+<script>
+	$(function() {
+		$('#grid').masonry({
+		  // set itemSelector so .grid-sizer is not used in layout
+		  itemSelector: '.grid-item',
+		  // use element for option
+		})
+	}); 
+>>>>>>> refs/remotes/origin/master
 </script>
 
 </head>
@@ -142,6 +258,38 @@ body { font-family: sans-serif; }
 	<div class="grid-item"></div>
 	<div class="grid-item"></div>
 </div>
+
+	<div class="navbar navbar-default">
+		<div class="progress">
+			<div class="progress-bar progress-bar-striped active text-center"
+				role="progressbar" aria-valuenow="40" aria-valuemin="0"
+				aria-valuemax="100" style="width: 40%">
+				<span>작업 진행 상황 : 40%</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="grid" class="masonry clearfix">
+		<div class="grid-item">
+			<div class="todotile">
+				<div class="todotileTitle">
+					TODOTile Sample Title
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped active text-center"
+						role="progressbar" aria-valuenow="40" aria-valuemin="0"
+						aria-valuemax="100" style="width: 40%">
+						<span>40%</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-item"></div>
+		<div class="grid-item"></div>
+		<div class="grid-item"></div>
+		<div class="grid-item"></div>
+		<div class="grid-item"></div>
+	</div>
 
 
 </body>
