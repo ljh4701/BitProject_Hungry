@@ -75,7 +75,7 @@ body {
 /* ---- grid-item ---- */
 .grid-item {
 	width: 300px;
-	height: 320px;
+	height: 400px;
 	float: left;
 	margin: 5px;
 	background-color: #02B34F;
@@ -89,6 +89,7 @@ body {
 	border: 0;
 	font-size: 24px !important;
 	padding: 10px;
+	margin: 10px;
 }
 
 .navbar .progress {
@@ -120,7 +121,7 @@ body {
 }
 
 .grid-item .progress-bar {
-	background-color: #1CFF7F;
+	background-color: #eecccc;
 }
 
 .grid-item .progress span {
@@ -134,7 +135,7 @@ body {
 
 .grid-item .todotile {
 	width: 100%;
-	background-color: #18D6AA;
+	background-color: #25C007;
 	border-radius: 5px 5px 5px 5px;
 }
 
@@ -147,12 +148,47 @@ body {
 	text-align: center;
 }
 
-.grid-item .subjects {
-
+.grid-item .todotile .todotilecontent {
+	padding: 5px;
+	background-color: #25C007;
+	height: 320px;
+	overflow : auto;
 }
 
-.grid-item .details {
+.grid-item .todotile .todotilecontent .todotilesubject {
+	background-color: #ffffff;
+	padding: 10px;
+}
 
+.grid-item .todotile .todotilecontent .todotilesubject .todotilesubjectTitle {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject .todotiledetail {
+	font-size: 14px;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject .todotiledetail .plus {
+	text-align: center;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject .todotiledetail input[type=checkbox] {
+	position: relative;
+	float: left;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject .todotiledetail label {
+	text-align: center;
+}
+
+.grid-item > .plus {
+	line-height: 380px;
+	text-align: center;
+	background-color: #ffffff;
+	font-size: 64px;
 }
 
 </style>
@@ -179,7 +215,9 @@ body {
 			</div>
 		</div>
 	</div>
-
+	
+	<hr>
+	
 	<div id="grid" class="masonry clearfix">
 		<div class="grid-item">
 			<div class="todotile">
@@ -193,15 +231,161 @@ body {
 						<span>40%</span>
 					</div>
 				</div>
+				<div class="todotilecontent">
+					<div class="todotilesubject">
+						<div class="todotilesubjectTitle">
+							Subject Title
+						</div>
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped active text-center"
+								role="progressbar" aria-valuenow="40" aria-valuemin="0"
+								aria-valuemax="100" style="width: 40%">
+								<span>40%</span>
+							</div>
+						</div>
+						<div class="todotiledetail">
+							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 2</label>
+						</div>
+						<div class="todotiledetail">
+							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 2</label>
+						</div>
+						<div class="todotiledetail">
+							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
+						</div>
+						<div class="todotiledetail plus">
+							추가하기...
+						</div>
+					</div>
+					<div class="todotilesubject">
+						<div class="todotilesubjectTitle">
+							Subject Title
+						</div>
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped active text-center"
+								role="progressbar" aria-valuenow="40" aria-valuemin="0"
+								aria-valuemax="100" style="width: 40%">
+								<span>40%</span>
+							</div>
+						</div>
+						<div class="todotiledetail">
+							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
+						</div>
+						<div class="todotiledetail">
+							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
+						</div>
+					</div>
+					<div class="todotilesubject">
+						<div class="todotilesubjectTitle">
+							Subject Title
+						</div>
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped active text-center"
+								role="progressbar" aria-valuenow="40" aria-valuemin="0"
+								aria-valuemax="100" style="width: 40%">
+								<span>40%</span>
+							</div>
+						</div>
+						<div class="todotiledetail">
+							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="grid-item"></div>
-		<div class="grid-item"></div>
-		<div class="grid-item"></div>
-		<div class="grid-item"></div>
-		<div class="grid-item"></div>
+		<div class="grid-item">
+			<div class="todotile">
+				<div class="todotileTitle">
+					TODOTile Sample Title
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped active text-center"
+						role="progressbar" aria-valuenow="40" aria-valuemin="0"
+						aria-valuemax="100" style="width: 40%">
+						<span>40%</span>
+					</div>
+				</div>
+				
+				<div class="todotilecontent">
+					
+				</div>
+			</div>
+		</div>
+		<div class="grid-item">
+			<div class="todotile">
+				<div class="todotileTitle">
+					TODOTile Sample Title
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped active text-center"
+						role="progressbar" aria-valuenow="40" aria-valuemin="0"
+						aria-valuemax="100" style="width: 40%">
+						<span>40%</span>
+					</div>
+				</div>
+				
+				<div class="todotilecontent">
+					
+				</div>
+			</div>
+		</div>
+		<div class="grid-item">
+			<div class="todotile">
+				<div class="todotileTitle">
+					TODOTile Sample Title
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped active text-center"
+						role="progressbar" aria-valuenow="40" aria-valuemin="0"
+						aria-valuemax="100" style="width: 40%">
+						<span>40%</span>
+					</div>
+				</div>
+				
+				<div class="todotilecontent">
+					
+				</div>
+			</div>
+		</div>
+		<div class="grid-item">
+			<div class="todotile">
+				<div class="todotileTitle">
+					TODOTile Sample Title
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped active text-center"
+						role="progressbar" aria-valuenow="40" aria-valuemin="0"
+						aria-valuemax="100" style="width: 40%">
+						<span>40%</span>
+					</div>
+				</div>
+				
+				<div class="todotilecontent">
+					
+				</div>
+			</div>
+		</div>
+		<div class="grid-item">
+			<div class="todotile">
+				<div class="todotileTitle">
+					TODOTile Sample Title
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped active text-center"
+						role="progressbar" aria-valuenow="40" aria-valuemin="0"
+						aria-valuemax="100" style="width: 40%">
+						<span>40%</span>
+					</div>
+				</div>
+				
+				<div class="todotilecontent">
+					
+				</div>
+			</div>
+		</div>
+		<div class="grid-item">
+			<div class="plus">+</div>
+		</div>
 	</div>
-
 
 </body>
 
