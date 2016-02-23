@@ -84,6 +84,13 @@ body {
 	padding: 10px;
 }
 
+/* clearfix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
 .navbar {
 	margin-bottom: 0;
 	z-index: 9999;
@@ -250,6 +257,11 @@ body {
 	font-size: 64px;
 	cursor: pointer;
 }
+
+.grid-item > .plus:hover {
+	background-color: #eeeeee;
+}
+
 .grid-item .todotile .todotilecontent .plus {
 	text-align: center;
 	font-size: 20px;
@@ -263,6 +275,8 @@ body {
 </style>
 
 <script>
+	var $grid;
+
 	function createTODOTile() {
 		var TODOTileTag = '';
 		TODOTileTag += '<div class="grid-item" data-index="';
@@ -310,20 +324,29 @@ body {
 	}
 	
 	function masonry() {
-		$('#grid').masonry({
+		$grid = $('#grid').masonry({
 			itemSelector: '.grid-item'
 		});
 	}
 	
 	$(function() {
-			
-		$('#grid > .grid-item:last-child').on('click', function() {
+		
+		masonry();
+		
+		$grid.on('click', '.grid-item:last-child', function() {
 			createTODOTile();
 		});
 		
+		/*	
+		$('#grid > .grid-item:last-child').on('click', function() {
+			createTODOTile();
+		});
+		*/
+		
 		$('[data-toggle="tooltip"]').tooltip();
 		
-		masonry();
+		createTODOTile();
+		createTODOTile();
 		createTODOTile();
 	}); 
 </script>
@@ -393,12 +416,13 @@ body {
 				</div>
 			</div>
 		</div>
-	-->	
+		-->
 		<div class="grid-item">
 			<div class="todotile plus" data-toggle="tooltip" data-placement="top" title="TODO 타일을 생성합니다.">
 				+
 			</div>
 		</div>
+		
 	</div>
 
 </body>
