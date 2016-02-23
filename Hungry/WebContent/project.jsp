@@ -76,7 +76,8 @@ body {
 .grid-item {
 	width: 300px;
 	height: 400px;
-	float: left;
+	float: right;
+	display: block;
 	margin: 5px;
 	background-color: #02B34F;
 	border-radius: 10px;
@@ -153,6 +154,7 @@ body {
 	background-color: #25C007;
 	height: 320px;
 	overflow : auto;
+	border-radius: 0 0 5px 5px;
 }
 
 .grid-item .todotile .todotilecontent .todotilesubject {
@@ -161,27 +163,84 @@ body {
 }
 
 .grid-item .todotile .todotilecontent .todotilesubject .todotilesubjectTitle {
-	font-size: 20px;
-	font-weight: bold;
+	font-size: 22px;
+	background-color: #BFFFBF;
+	border-radius: 5px 5px 0 0;
+	padding: 5px;
 }
 
-.grid-item .todotile .todotilecontent .todotilesubject .todotiledetail {
-	font-size: 14px;
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail:first-child {
+	border-top: 1px solid black;
+	border-radius: 5px 5px 0 0;
 }
 
-.grid-item .todotile .todotilecontent .todotilesubject .todotiledetail .plus {
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail:nth-child(2n) {
+	background-color: #CCCCCC;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail:last-child {
+	background-color: #FFFFFF;
+	border-radius: 0 0 5px 5px;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail {
+	font-size: 15px;
+	padding: 3px;
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	position: relative;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail:hover > .todotiledetailremove {
+	display: block;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject .plus {
 	text-align: center;
 	font-weight: bold;
 	font-size: 12px;
 }
 
-.grid-item .todotile .todotilecontent .todotilesubject .todotiledetail input[type=checkbox] {
+.grid-item .todotile .todotilecontent .todotilesubject .plus:hover {
+	color: #cccccc;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail input[type=checkbox] {
 	position: relative;
 	float: left;
 }
 
-.grid-item .todotile .todotilecontent .todotilesubject .todotiledetail label {
-	text-align: center;
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail label {
+	font-weight: bold;
+	cursor: text;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail .todotiledetailremove {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	
+	cursor: pointer;
+	
+	border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+
+    background: #fff;
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+
+    font: 9px Arial, sans-serif;
+    display:none;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail .todotiledetailremove:hover {
+	background-color: #cccccc;
 }
 
 .grid-item > .plus {
@@ -189,17 +248,83 @@ body {
 	text-align: center;
 	background-color: #ffffff;
 	font-size: 64px;
+	cursor: pointer;
+}
+.grid-item .todotile .todotilecontent .plus {
+	text-align: center;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.grid-item .todotile .todotilecontent .plus:hover {
+	color: #cccccc;
 }
 
 </style>
 
 <script>
-	$(function() {
+	function createTODOTile() {
+		var TODOTileTag = '';
+		TODOTileTag += '<div class="grid-item" data-index="';
+		TODOTileTag += $('#grid > .grid-item').length - 1;
+		TODOTileTag += '">\n';
+			TODOTileTag += '<div class="todotile">\n';
+				TODOTileTag += '<div class="todotileTitle">\n';
+					TODOTileTag += '새로운 TODO 타일 항목\n';
+				TODOTileTag += '</div>\n';
+				TODOTileTag += '<div class="progress todotileProgress">\n';
+					TODOTileTag += '<div class="progress-bar progress-bar-striped active text-center" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">\n';
+						TODOTileTag += '<span>작업 진행 상황 : 0%</span>\n';
+					TODOTileTag += '</div>\n';
+				TODOTileTag += '</div>\n';
+				TODOTileTag += '<div class="todotilecontent">\n';
+					TODOTileTag += '<div class="todotilesubject plus">\n';
+							TODOTileTag += '헤더 추가하기\n';
+					TODOTileTag += '</div>\n';
+				TODOTileTag += '</div>\n';
+			TODOTileTag += '</div>\n';
+		TODOTileTag += '</div>\n';
+		
+		$('#grid > .grid-item:last-child').before(TODOTileTag);
+		$('#grid').masonry('reloadItems').masonry('layout');
+	}
+	
+	function createTODOTileSubject(todotileIndex) {
+	
+	}
+	
+	function createTODOTileDetail(todotileIndex, todotilesubjectIndex) {
+		
+	}
+	
+	function deleteTODOTile(todotileIndex, todotilesubjectIndex, todotiledetailIndex) {
+	
+	}
+	
+	function deleteTODOTileSubject(todotileIndex, todotilesubjectIndex) {
+	
+	}
+	
+	function deleteTODOTileDetail(todotileIndex) {
+	
+	}
+	
+	function masonry() {
 		$('#grid').masonry({
-		  // set itemSelector so .grid-sizer is not used in layout
-		  itemSelector: '.grid-item',
-		  // use element for option
-		})
+			itemSelector: '.grid-item'
+		});
+	}
+	
+	$(function() {
+			
+		$('#grid > .grid-item:last-child').on('click', function() {
+			createTODOTile();
+		});
+		
+		$('[data-toggle="tooltip"]').tooltip();
+		
+		masonry();
+		createTODOTile();
 	}); 
 </script>
 
@@ -219,12 +344,13 @@ body {
 	<hr>
 	
 	<div id="grid" class="masonry clearfix">
-		<div class="grid-item">
+	<!--
+		<div class="grid-item" data-index="0">
 			<div class="todotile">
 				<div class="todotileTitle">
 					TODOTile Sample Title
 				</div>
-				<div class="progress">
+				<div class="progress todotileProgress">
 					<div class="progress-bar progress-bar-striped active text-center"
 						role="progressbar" aria-valuenow="40" aria-valuemin="0"
 						aria-valuemax="100" style="width: 40%">
@@ -232,158 +358,46 @@ body {
 					</div>
 				</div>
 				<div class="todotilecontent">
-					<div class="todotilesubject">
+					<div class="todotilesubject" data-index="0">
 						<div class="todotilesubjectTitle">
 							Subject Title
 						</div>
-						<div class="progress">
+						<div class="progress todotilesubjctProgress">
 							<div class="progress-bar progress-bar-striped active text-center"
 								role="progressbar" aria-valuenow="40" aria-valuemin="0"
 								aria-valuemax="100" style="width: 40%">
 								<span>40%</span>
 							</div>
 						</div>
-						<div class="todotiledetail">
-							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 2</label>
-						</div>
-						<div class="todotiledetail">
-							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 2</label>
-						</div>
-						<div class="todotiledetail">
-							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
-						</div>
-						<div class="todotiledetail plus">
-							추가하기...
-						</div>
-					</div>
-					<div class="todotilesubject">
-						<div class="todotilesubjectTitle">
-							Subject Title
-						</div>
-						<div class="progress">
-							<div class="progress-bar progress-bar-striped active text-center"
-								role="progressbar" aria-valuenow="40" aria-valuemin="0"
-								aria-valuemax="100" style="width: 40%">
-								<span>40%</span>
+						<div class="todotiledetailcontent">
+							<div class="todotiledetail" data-index="0">
+								<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 1</label>
+								<span class="todotiledetailremove" data-toggle="tooltip" data-placement="bottom" title="세부항목을 삭제합니다.">X</span>
+							</div>
+							<div class="todotiledetail" data-index="1">
+								<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 2</label>
+								<span class="todotiledetailremove" data-toggle="tooltip" data-placement="bottom" title="세부항목을 삭제합니다.">X</span>
+							</div>
+							<div class="todotiledetail" data-index="2">
+								<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
+								<span class="todotiledetailremove" data-toggle="tooltip" data-placement="bottom" title="세부항목을 삭제합니다.">X</span>
+							</div>
+							<div class="todotiledetail plus">
+								항목 추가하기
 							</div>
 						</div>
-						<div class="todotiledetail">
-							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
-						</div>
-						<div class="todotiledetail">
-							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
-						</div>
 					</div>
-					<div class="todotilesubject">
-						<div class="todotilesubjectTitle">
-							Subject Title
-						</div>
-						<div class="progress">
-							<div class="progress-bar progress-bar-striped active text-center"
-								role="progressbar" aria-valuenow="40" aria-valuemin="0"
-								aria-valuemax="100" style="width: 40%">
-								<span>40%</span>
-							</div>
-						</div>
-						<div class="todotiledetail">
-							<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
-						</div>
+					<div class="todotilesubject plus">
+							헤더 추가하기
 					</div>
 				</div>
 			</div>
 		</div>
+	-->	
 		<div class="grid-item">
-			<div class="todotile">
-				<div class="todotileTitle">
-					TODOTile Sample Title
-				</div>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped active text-center"
-						role="progressbar" aria-valuenow="40" aria-valuemin="0"
-						aria-valuemax="100" style="width: 40%">
-						<span>40%</span>
-					</div>
-				</div>
-				
-				<div class="todotilecontent">
-					
-				</div>
+			<div class="todotile plus" data-toggle="tooltip" data-placement="top" title="TODO 타일을 생성합니다.">
+				+
 			</div>
-		</div>
-		<div class="grid-item">
-			<div class="todotile">
-				<div class="todotileTitle">
-					TODOTile Sample Title
-				</div>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped active text-center"
-						role="progressbar" aria-valuenow="40" aria-valuemin="0"
-						aria-valuemax="100" style="width: 40%">
-						<span>40%</span>
-					</div>
-				</div>
-				
-				<div class="todotilecontent">
-					
-				</div>
-			</div>
-		</div>
-		<div class="grid-item">
-			<div class="todotile">
-				<div class="todotileTitle">
-					TODOTile Sample Title
-				</div>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped active text-center"
-						role="progressbar" aria-valuenow="40" aria-valuemin="0"
-						aria-valuemax="100" style="width: 40%">
-						<span>40%</span>
-					</div>
-				</div>
-				
-				<div class="todotilecontent">
-					
-				</div>
-			</div>
-		</div>
-		<div class="grid-item">
-			<div class="todotile">
-				<div class="todotileTitle">
-					TODOTile Sample Title
-				</div>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped active text-center"
-						role="progressbar" aria-valuenow="40" aria-valuemin="0"
-						aria-valuemax="100" style="width: 40%">
-						<span>40%</span>
-					</div>
-				</div>
-				
-				<div class="todotilecontent">
-					
-				</div>
-			</div>
-		</div>
-		<div class="grid-item">
-			<div class="todotile">
-				<div class="todotileTitle">
-					TODOTile Sample Title
-				</div>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped active text-center"
-						role="progressbar" aria-valuenow="40" aria-valuemin="0"
-						aria-valuemax="100" style="width: 40%">
-						<span>40%</span>
-					</div>
-				</div>
-				
-				<div class="todotilecontent">
-					
-				</div>
-			</div>
-		</div>
-		<div class="grid-item">
-			<div class="plus">+</div>
 		</div>
 	</div>
 
