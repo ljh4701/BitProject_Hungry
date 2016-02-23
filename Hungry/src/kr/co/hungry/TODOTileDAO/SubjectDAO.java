@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.co.hungry.common.DBUtil;
+import kr.co.hungry.common.DBUtil_mysql;
 import kr.co.hungry.TODOTileVO.SubjectVO;
 
 public class SubjectDAO {
@@ -18,7 +18,7 @@ public class SubjectDAO {
 		SubjectVO tabSubject;
 		
 		try{
-			conn = DBUtil.getConnection();
+			conn = DBUtil_mysql.getConnection();
 			ps = conn.prepareStatement("select * from subject");
 			rs = ps.executeQuery();
 			
@@ -32,7 +32,7 @@ public class SubjectDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
-			DBUtil.close(conn, ps, rs);
+			DBUtil_mysql.close(conn, ps, rs);
 		}
 		
 		return tabSubjectList;
@@ -46,7 +46,7 @@ public class SubjectDAO {
 		SubjectVO tabSubject;
 		
 		try{
-			conn = DBUtil.getConnection();
+			conn = DBUtil_mysql.getConnection();
 			ps = conn.prepareStatement("select * from subject where TITLENO = ?");
 			ps.setString(1, TitleNo);
 			rs = ps.executeQuery();
@@ -61,7 +61,7 @@ public class SubjectDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
-			DBUtil.close(conn, ps, rs);
+			DBUtil_mysql.close(conn, ps, rs);
 		}
 		
 		return tabSubjectList;
@@ -73,7 +73,7 @@ public class SubjectDAO {
 		PreparedStatement ps = null;
 		
 		try{
-			conn = DBUtil.getConnection();
+			conn = DBUtil_mysql.getConnection();
 			String sql = "delete subject where subjectNo = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, subjectNo);
@@ -82,7 +82,7 @@ public class SubjectDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
-			DBUtil.close(conn, ps);
+			DBUtil_mysql.close(conn, ps);
 		}
 		
 		return resultCount;
@@ -95,7 +95,7 @@ public class SubjectDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = DBUtil.getConnection();
+			conn = DBUtil_mysql.getConnection();
 			String sql = "select * from subject where subjectNo = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, subjectNo);
@@ -109,7 +109,7 @@ public class SubjectDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally {
-			DBUtil.close(conn, ps, rs);
+			DBUtil_mysql.close(conn, ps, rs);
 		}
 		
 		return getSubject;
@@ -121,8 +121,8 @@ public class SubjectDAO {
 		int resultCount = 0;
 		
 		try{
-			conn = DBUtil.getConnection();
-			String sql = "insert into subject values(subject_sq.nextval,?,?)";
+			conn = DBUtil_mysql.getConnection();
+			String sql = "insert into subject values(null,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, tabSubject.getSubjectContent());
 			ps.setString(2, tabSubject.getTitleNo());
@@ -131,7 +131,7 @@ public class SubjectDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		} finally{
-			DBUtil.close(conn, ps);
+			DBUtil_mysql.close(conn, ps);
 		}
 		return resultCount;
 	}
