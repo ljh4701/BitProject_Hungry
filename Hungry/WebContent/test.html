@@ -141,6 +141,32 @@ body {
 	border-radius: 5px 5px 5px 5px;
 }
 
+.grid-item .todotile .todotileremove {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+	border-radius: 50%;
+	behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+	width: 20px;
+	height: 20px;
+	padding: 3px;
+	background: #fff;
+	border: 2px solid #666;
+	color: #666;
+	text-align: center;
+	font: 9px Arial, sans-serif;
+	display: none;
+}
+
+.grid-item .todotile .todotileremove:hover {
+	background: #ccc;
+}
+
+.grid-item .todotile:hover>.todotileremove {
+	display: block;
+}
+
 .grid-item .todotileTitle {
 	background-color: #B31002;
 	border-radius: 5px 5px 0 0;
@@ -213,6 +239,39 @@ body {
 	color: #cccccc;
 }
 
+.grid-item .todotile .todotilecontent .todotilesubject:hover>.todotilesubjectremove
+	{
+	display: block;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject {
+	position: relative;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject .todotilesubjectremove
+	{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+	border-radius: 50%;
+	behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+	width: 20px;
+	height: 20px;
+	padding: 3px;
+	background: #fff;
+	border: 2px solid #666;
+	color: #666;
+	text-align: center;
+	font: 9px Arial, sans-serif;
+	display: none;
+}
+
+.grid-item .todotile .todotilecontent .todotilesubject .todotilesubjectremove:hover
+	{
+	background-color: #cccccc;
+}
+
 .grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail input[type=checkbox]
 	{
 	position: relative;
@@ -244,7 +303,8 @@ body {
 	display: none;
 }
 
-.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail .todotiledetailremove:hover {
+.grid-item .todotile .todotilecontent .todotilesubject  .todotiledetail .todotiledetailremove:hover
+	{
 	background-color: #cccccc;
 }
 
@@ -269,12 +329,14 @@ body {
 .grid-item .todotile .todotilecontent #plus:hover {
 	color: #cccccc;
 }
+
 </style>
 
 <script>
 	var $grid;
 
 	function createTODOTile() {
+		  // 기본 타일을 생성한다. 서브젝트 추가하기 버튼도 생성한다.
 		  var _t = $('#grid > .grid-item:last-child').position().top;
 		  var _l = $('#grid > .grid-item:last-child').position().left;
 		  var index = $('#grid > .grid-item').length - 1;
@@ -283,42 +345,52 @@ body {
 		  TODOTileTag += '<div class="grid-item" style="position:absolute; top:'+_t+'px; left:'+_l+'px;" data-index="';
 		  TODOTileTag += index;
 		  TODOTileTag += '">\n';
-		   TODOTileTag += '<div class="todotile">\n';
-		    TODOTileTag += '<div class="todotileTitle">\n';
-		     TODOTileTag += '새로운 TODO 타일 항목\n';
-		    TODOTileTag += '</div>\n';
-		    TODOTileTag += '<div class="progress todotileProgress">\n';
-		     TODOTileTag += '<div class="progress-bar progress-bar-striped active text-center" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">\n';
-		      TODOTileTag += '<span>작업 진행 상황 : 0%</span>\n';
-		     TODOTileTag += '</div>\n';
-		    TODOTileTag += '</div>\n';
-		    TODOTileTag += '<div class="todotilecontent">\n';
-		     TODOTileTag += '<div id="plus" class="todotilesubject">\n';
-		       TODOTileTag += '서브젝트 추가하기\n';
-		     TODOTileTag += '</div>\n';
-		    TODOTileTag += '</div>\n';
-		   TODOTileTag += '</div>\n';
+			  TODOTileTag += '<div class="todotile" data-index=' + index + '>\n';
+				  TODOTileTag += '<span class="todotileremove" data-toggle="tooltip" data-placement="bottom" title="세부항목을 삭제합니다.">X</span>\n';
+				  TODOTileTag += '<div class="todotileTitle">\n';
+			  	  	  TODOTileTag += '새로운 TODO 타일 항목\n';
+				  TODOTileTag += '</div>\n';
+				  TODOTileTag += '<div class="progress todotileProgress">\n';
+					  TODOTileTag += '<div class="progress-bar progress-bar-striped active text-center" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">\n';
+					  	  TODOTileTag += '<span>작업 진행 상황 : 0%</span>\n';
+					  TODOTileTag += '</div>\n';
+				  TODOTileTag += '</div>\n';
+				  TODOTileTag += '<div class="todotilecontent">\n';
+					  TODOTileTag += '<div id="plus" class="todotilesubject">\n';
+					  	  TODOTileTag += '서브젝트 추가하기\n';
+					  TODOTileTag += '</div>\n';
+				  TODOTileTag += '</div>\n';
+			  TODOTileTag += '</div>\n';
 		  TODOTileTag += '</div>\n';
 		  		  
+		  // 맨 마지막에 추가 후 Masonry 플러그인 실행
 		  $('#grid > .grid-item:last-child').before(TODOTileTag);
 		  $('#grid').masonry('reloadItems').masonry('layout');
 		  
+		  // 서브젝트 생성버튼 지정
 		  $('#grid > .grid-item:nth-last-child(2) > .todotile > .todotilecontent > #plus').on('click', function() {
 			 	createTODOTileSubject(index);
-			 	return false;
+		  });
+		  
+		  // TODO타일 삭제버튼 지정
+		  $('#grid > .grid-item:nth-last-child(2) > .todotile > .todotileremove').on('click', function() {
+			 	deleteTODOTile(index); 
 		  });
 	 }
 	
 	function createTODOTileSubject(todotileIndex) {
+		// 기본 서브젝트를 생성한다. 세부항복 추가하기 버튼도 생성한다.
+		// data-no=1
 		var TODOTileTag = '';
 		var subjectindex = $('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject').length - 1;
 		TODOTileTag += '<div class="todotilesubject" data-index="' + subjectindex + '">\n';
+			TODOTileTag += '<span class="todotilesubjectremove" data-toggle="tooltip" data-placement="bottom" title="세부항목을 삭제합니다.">X</span>\n';
 			TODOTileTag += '<div class="todotilesubjectTitle">\n';
 				TODOTileTag += '임시 서브젝트 ' + subjectindex + '\n';
 			TODOTileTag += '</div>\n';
 			TODOTileTag += '<div class="progress todotilesubjctProgress">\n';
-				TODOTileTag += '<div class="progress-bar progress-bar-striped active text-center" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">\n';
-					TODOTileTag += '<span>40%</span>\n';
+				TODOTileTag += '<div class="progress-bar progress-bar-striped active text-center" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">\n';
+					TODOTileTag += '<span>0%</span>\n';
 				TODOTileTag += '</div>\n';
 			TODOTileTag += '</div>\n';
 			TODOTileTag += '<div class="todotiledetailcontent">\n';
@@ -328,24 +400,152 @@ body {
 			TODOTileTag += '</div>\n';
 		TODOTileTag += '</div>\n';
 		
+		// 맨마지막에 추가
 		$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotilecontent > div.todotilesubject:last-child').before(TODOTileTag);
+		
+		// 세부항목 생성버튼 지정
+		$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotilecontent > .todotilesubject[data-index=' + subjectindex + '] > .todotiledetailcontent > #plus').on('click', function() {
+			createTODOTileDetail(todotileIndex, subjectindex);
+		});
+		
+		// 서브젝트 삭제버튼 지정
+		$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotilecontent > .todotilesubject[data-index=' + subjectindex + '] .todotilesubjectremove').on('click', function() {
+			deleteTODOTileSubject(todotileIndex, subjectindex);
+		});
 	}
 	
 	function createTODOTileDetail(todotileIndex, todotilesubjectIndex) {
-		var detailindex = '';
+		// 세부항목 생성한다.
+		var detailindex = $('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + '] .todotiledetailcontent .todotiledetail').length - 1;
 		var TODOTileTag = '';
+		TODOTileTag += '<div class="todotiledetail" data-index="' + detailindex + '">\n';
+			TODOTileTag += '<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail ' + (detailindex + 1) + '</label>\n';
+			TODOTileTag += '<span class="todotiledetailremove" data-toggle="tooltip" data-placement="bottom" title="세부항목을 삭제합니다.">X</span>\n';
+		TODOTileTag += '</div>\n';
+		
+		// 맨 마지막에 추가한다.
+		$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + '] .todotiledetailcontent .todotiledetail:last-child').before(TODOTileTag);
+		
+		// 체크이벤트
+		$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + '] .todotiledetailcontent .todotiledetail[data-index=' + detailindex + '] > input[type="checkbox"]').on('change', function() {
+			if ($(this).is(':checked')) {
+				alert("체크");
+			}
+			else {
+				
+			}
+		});
+		
+		// 세부항목 삭제버튼 지정
+		$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + '] .todotiledetailcontent .todotiledetail[data-index=' + detailindex + '] .todotiledetailremove').on('click', function() {
+			deleteTODOTileDetail(todotileIndex, todotilesubjectIndex, detailindex);
+		});
+		
+		
 	}
 	
-	function deleteTODOTile(todotileIndex, todotilesubjectIndex, todotiledetailIndex) {
-	
+	function deleteTODOTile(todotileIndex) {
+		// 뒤 남아있는 인덱스의 data-index 속성을 다시 지정해준다.
+		// todotile의 data-index 속성뿐 아니라, todotilesubject의 클릭이벤트에도 바뀐 todotile의 data-index를 지정해줘야 코드가 올바르게 수행된다.
+		// 마찬가지로 todotiledetail의 클릭이벤트도 바뀐 todotile의 data-index를 지정해줘야 코드가 올바르게 수행된다.
+		
+		// 삭제 후, 남아있는 모든 인덱스의 개수를 구한다. ( 플러스버튼 제외 )
+		$('#grid > .grid-item[data-index=' + todotileIndex + ']').replaceWith('');
+		var alltileindex = $('#grid > .grid-item').length - 1;
+		
+		// 맨 마지막을 삭제한 것이 아니라면, 그 타일들의 모든 바뀐 TODOTile의 index를 새로 갱신해주어야 한다.
+		if (todotileIndex < alltileindex) {
+			for (var i = todotileIndex + 1; i <= alltileindex; i++) {
+				$('#grid > .grid-item[data-index=' + i + '] .todotile .todotileremove').off('click');
+				$('#grid > .grid-item[data-index=' + i + '] .todotile .todotileremove').on('click', { index: (i-1) }, function(event) {
+					deleteTODOTile(todotileIndex);
+				});
+				
+				$('#grid > .grid-item[data-index=' + i + '] .todotile .todotilecontent > #plus').off('click');
+				$('#grid > .grid-item[data-index=' + i + '] .todotile .todotilecontent > #plus').on('click', { index: (i-1) }, function(event) {
+					createTODOTileSubject(event.data.index);
+				});
+				
+				var subjectallindex = $('#grid > .grid-item[data-index=' + i + '] .todotile .todotilecontent .todotilesubject').length - 1;
+				if (subjectallindex !== 0) {
+					for (var j = 0; j <= subjectallindex; j++) {
+						$('#grid > .grid-item[data-index=' + i + '] .todotile .todotilecontent .todotilesubject[data-index=' + j + '] .todotiledetailcontent > #plus').off('click');
+						$('#grid > .grid-item[data-index=' + i + '] .todotile .todotilecontent .todotilesubject[data-index=' + j + '] .todotiledetailcontent > #plus').on('click', { index: (i-1), index2: j }, function(event) {
+							createTODOTileDetail(event.data.index, event.data.index2);
+						});
+						
+						$('#grid > .grid-item[data-index=' + i + '] .todotile .todotilecontent .todotilesubject[data-index=' + j + '] .todotilesubjectremove').off('click');
+						$('#grid > .grid-item[data-index=' + i + '] .todotile .todotilecontent .todotilesubject[data-index=' + j + '] .todotilesubjectremove').on('click', { index: (i-1), index2: j }, function(event) {
+							deleteTODOTileSubject(event.data.index, event.data.index2);
+						});
+					}
+				}
+				
+				$('#grid > .grid-item[data-index=' + i + ']').attr('data-index', i-1);
+			}
+		}
+		
+		$('#grid').masonry('reloadItems').masonry('layout');
 	}
 	
 	function deleteTODOTileSubject(todotileIndex, todotilesubjectIndex) {
+		$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + ']').replaceWith('');
+		var allsubjectindex = $('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject').length - 1;
 	
+		if (todotilesubjectIndex < allsubjectindex) {
+			for (var i = todotilesubjectIndex + 1; i <= allsubjectindex; i++) {
+				$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + i + '] .todotilesubjectremove').off('click');
+				$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + i + '] .todotilesubjectremove').on('click', { index: (i-1) }, function(event) {
+					deleteTODOTileSubject(todotileIndex, event.data.index);
+				});
+				
+				$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + i + '] .todotiledetailcontent > #plus').off('click');
+				$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + i + '] .todotiledetailcontent > #plus').on('click', { index : (i-1) }, function(event) {
+					createTODOTileDetail(todotileIndex, event.data.index);
+				});
+				
+				$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + i + ']').attr('data-index', i-1);
+			}
+		}
 	}
 	
-	function deleteTODOTileDetail(todotileIndex) {
+	function deleteTODOTileDetail(todotileIndex, todotilesubjectIndex, todotiledetailIndex) {
+		$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + '] .todotiledetailcontent .todotiledetail[data-index=' + (todotiledetailIndex) + ']').replaceWith('');
+		// 남은 모든 인덱스
+		var alldetailindex = $('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + '] .todotiledetailcontent .todotiledetail').length - 1;
+		
+		if (todotiledetailIndex < alldetailindex) {
+			// 정렬
+			// 0 1 2 3 4 -> 1 2 3 4 -> 0 1 2 3
+			for (var i = todotiledetailIndex + 1; i <= alldetailindex; i++ ) {
+				$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + '] .todotiledetailcontent .todotiledetail[data-index=' + i + '] .todotiledetailremove').off('click');
+				$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + '] .todotiledetailcontent .todotiledetail[data-index=' + i + '] .todotiledetailremove').on('click', { index: (i-1) }, function(event) {
+					deleteTODOTileDetail(todotileIndex, todotilesubjectIndex, event.data.index);
+				});
+				$('#grid > .grid-item[data-index=' + todotileIndex + '] .todotile .todotilecontent .todotilesubject[data-index=' + todotilesubjectIndex + '] .todotiledetailcontent .todotiledetail[data-index=' + i + ']').attr('data-index', i-1);
+			}
+		}
+	}
 	
+	function updateTODOTileDataIndex() {
+		// TODOTile의 Data-index가 변경됬을 시, 삭제 버튼의 TODOTile의 이벤트에 Data-index 인자를 새로 갱신해야 한다.
+		// 또, 서브젝트 추가와 삭제,
+		// 세부항목 추가와 삭제 역시 이벤트에 TODOTile의 Data-index 인자를 새로 갱신해야 한다.
+	}
+	
+	function updateTODOTileSubjectDataIndex() {
+		// TODOTile Subject의 Data-index가 변경됬을 시, 삭제 버튼의 이벤트에 TODOTile Subject의 Data-index 인자를 새로 갱신해야 한다.
+		// 세부항목 추가와 삭제 역시 이벤트에 TODOTile Subject의 Data-index 인자를 새로 갱신해야 한다.
+	}
+	
+	function updateTODOTileDetailDataIndex() {
+		// 세부항목의 Data-index 를 변경하고, 삭제 버튼의 이벤트에 Detail Data-index 인자를 새로 갱신해야 한다.
+		// createTODOTileDetail(todotileIndex, todotilesubjectIndex)
+		// todotilesubjectIndex만 바뀔수도... todotileIndex만 바뀔수도...
+	} 
+	
+	function updateTODOTileDetailCheckedDataIndex() {
+		
 	}
 	
 	function masonry() {
@@ -382,56 +582,6 @@ body {
 	<hr>
 
 	<div id="grid" class="masonry clearfix">
-		<!--
-		<div class="grid-item" data-index="0">
-			<div class="todotile">
-				<div class="todotileTitle">
-					TODOTile Sample Title
-				</div>
-				<div class="progress todotileProgress">
-					<div class="progress-bar progress-bar-striped active text-center"
-						role="progressbar" aria-valuenow="40" aria-valuemin="0"
-						aria-valuemax="100" style="width: 40%">
-						<span>40%</span>
-					</div>
-				</div>
-				<div class="todotilecontent">
-					<div class="todotilesubject" data-index="0">
-						<div class="todotilesubjectTitle">
-							Subject Title
-						</div>
-						<div class="progress todotilesubjctProgress">
-							<div class="progress-bar progress-bar-striped active text-center"
-								role="progressbar" aria-valuenow="40" aria-valuemin="0"
-								aria-valuemax="100" style="width: 40%">
-								<span>40%</span>
-							</div>
-						</div>
-						<div class="todotiledetailcontent">
-							<div class="todotiledetail" data-index="0">
-								<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 1</label>
-								<span class="todotiledetailremove" data-toggle="tooltip" data-placement="bottom" title="세부항목을 삭제합니다.">X</span>
-							</div>
-							<div class="todotiledetail" data-index="1">
-								<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 2</label>
-								<span class="todotiledetailremove" data-toggle="tooltip" data-placement="bottom" title="세부항목을 삭제합니다.">X</span>
-							</div>
-							<div class="todotiledetail" data-index="2">
-								<label class="checkbox-inline"><input type="checkbox" name="detailchk" value="">Detail 3</label>
-								<span class="todotiledetailremove" data-toggle="tooltip" data-placement="bottom" title="세부항목을 삭제합니다.">X</span>
-							</div>
-							<div class="todotiledetail plus">
-								항목 추가하기
-							</div>
-						</div>
-					</div>
-					<div class="todotilesubject plus">
-							헤더 추가하기
-					</div>
-				</div>
-			</div>
-		</div>
-		-->
 		<div class="grid-item">
 			<div id="plus" class="todotile" data-toggle="tooltip"
 				data-placement="top" title="TODO 타일을 생성합니다.">+</div>
