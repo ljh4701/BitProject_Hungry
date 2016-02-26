@@ -1,4 +1,4 @@
-	package kr.co.hungry.common;
+package kr.co.hungry.common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

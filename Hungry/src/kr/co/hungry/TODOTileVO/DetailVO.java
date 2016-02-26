@@ -5,7 +5,8 @@ public class DetailVO {
 	private String detailContent;
 	private String subjectNo;
 	private int detailChecked;
-	
+	private SubjectVO subject;
+		
 	public String getDetailNo() {
 		return detailNo;
 	}
